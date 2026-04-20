@@ -17,14 +17,14 @@ def test_resources_items_fields(headers): #тест соответвия эле�
 def test_unauthorized(): #негативный тест на отсутствие токена
     response = get_resources(None, "/")
     assert response.status_code == 401
-    assert_error_response(response.json())
+    assert_error_response(response.json()) #проверка ответа об ошибке
 
 def test_without_path(headers): #негативный тест на отсутствие пути(path)
     response = requests.get(RESOURCES_URL, headers=headers)
     assert response.status_code == 400
-    assert_error_response(response.json())
+    assert_error_response(response.json()) #проверка ответа об ошибке
 
 def test_invalid_path(headers): #негативный тест на несущуствующий путь
     response = get_resources(headers, "/invalid_folder_123456789")
     assert response.status_code == 404
-    assert_error_response(response.json())
+    assert_error_response(response.json()) #проверка ответа об ошибке
